@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product - Inventory Management{% endblock %}
+
+{% block content %}
+<h2>Add New Product</h2>
+<form action="{{ url_for('add_product') }}" method="POST" enctype="multipart/form-data">
+    <label for="name">Product Name:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand"><br>
+
+    <label for="category">Category:</label>
+    <input type="text" name="category"><br>
+
+    <label for="purchase_price">Purchase Price:</label>
+    <input type="number" name="purchase_price" step="0.01" required><br>
+
+    <label for="stock_quantity">Stock Quantity:</label>
+    <input type="number" name="stock_quantity" required><br>
+
+    <label for="image">Image:</label>
+    <input type="file" name="image"><br>
+
+    <input type="submit" value="Add Product">
+</form>
+{% endblock %}

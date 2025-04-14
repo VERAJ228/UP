@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Comparison</title>
+</head>
+<body>
+    <h1>Sales Comparison</h1>
+    <form method="POST" action="{{ url_for('sales_comparison') }}">
+        <label for="start_date_1">Start Date (Period 1):</label>
+        <input type="date" name="start_date_1" required><br>
+
+        <label for="end_date_1">End Date (Period 1):</label>
+        <input type="date" name="end_date_1" required><br>
+
+        <label for="start_date_2">Start Date (Period 2):</label>
+        <input type="date" name="start_date_2" required><br>
+
+        <label for="end_date_2">End Date (Period 2):</label>
+        <input type="date" name="end_date_2" required><br>
+
+        <button type="submit">Compare Sales</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Sales Period 1</th>
+                <th>Sales Period 2</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comparison in comparisons %}
+            <tr>
+                <td>{{ comparison.product_name }}</td>
+                <td>{{ comparison.sales_period_1 }}</td>
+                <td>{{ comparison.sales_period_2 }}</td>
+                <td style="color: {% if comparison.change < 0 %} red {% else %} green {% endif %}">
+                    {{ comparison.change }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

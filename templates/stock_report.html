@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Report</title>
+</head>
+<body>
+    <h1>Stock Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Store</th>
+                <th>Stock Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            {% for store in stores %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ store.name }}</td>
+                <td>{{ product.stock_quantity }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

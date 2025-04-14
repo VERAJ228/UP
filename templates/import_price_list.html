@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import Price List</title>
+</head>
+<body>
+    <h1>Import Price List</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="price_list">Choose a CSV file:</label>
+        <input type="file" name="price_list" required><br>
+        <input type="submit" value="Import">
+    </form>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Max Profit Products - Inventory Management{% endblock %}
+
+{% block content %}
+<h2>Max Profit Products</h2>
+
+{% if products_profit %}
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Total Quantity Sold</th>
+            <th>Total Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products_profit %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.total_quantity }}</td>
+            <td>{{ product.total_profit }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No products found for the specified period.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Order</title>
+</head>
+<body>
+    <h1>Edit Order</h1>
+    <form action="{{ url_for('edit_order', order_id=order.order_id) }}" method="POST">
+        <label for="status">Order Status:</label>
+        <select name="status" required>
+            <option value="New" {% if order.order_status =='New' %}selected{% endif %}>New</option>
+            <option value="Packed" {% if order.order_status =='Packed' %}selected{% endif %}>Packed</option>
+            <option value="Delivered" {% if order.order_status =='Delivered' %}selected{% endif %}>Delivered</option>
+        </select><br>
+
+        <h3>Order Items</h3>
+        {% for item in order.order_items %}
+        <label for="quantity_{{ item.product_id }}">{{ item.product.name }}:</label>
+        <input type="number" name="quantity_{{ item.product_id }}" value="{{ item.quantity }}" required min="1"><br>
+        {% endfor %}
+
+        <button type="submit">Update Order</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

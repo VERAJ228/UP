@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Labels</title>
+    <style>
+        .label {
+            display: inline-block;
+            width: 200px;
+            height: 250px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            text-align: center;
+            padding: 10px;
+        }
+        .label img {
+            width: 100px;
+            height: 100px;
+        }
+        .label p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Labels</h1>
+    <div>
+        {% for label in labels %}
+        <div class="label">
+            <p><strong>{{ label.product_name }}</strong></p>
+            <p>Price: {{ label.product_price }}</p>
+            <img src="data:image/png;base64,{{ label.qr_code }}" alt="QR Code">
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

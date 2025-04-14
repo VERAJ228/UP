@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Movement Report - Inventory Management{% endblock %}
+
+{% block content %}
+<h2>Movement Report</h2>
+
+{% if movements %}
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>From Store</th>
+            <th>To Store</th>
+            <th>Quantity Moved</th>
+            <th>Movement Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movement in movements %}
+        <tr>
+            <td>{{ movement.product.name }}</td>
+            <td>{{ movement.from_store.name }}</td>
+            <td>{{ movement.to_store.name }}</td>
+            <td>{{ movement.quantity }}</td>
+            <td>{{ movement.movement_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No movements found.</p>
+{% endif %}
+
+{% endblock %}

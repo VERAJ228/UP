@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Products</title>
+</head>
+<body>
+    <h1>Sell Products</h1>
+    <form action="{{ url_for('sell_product') }}" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <input type="number" name="quantity" min="1" max="{{ product.stock_quantity }}" value="1" required>
+                        <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Complete Sale</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

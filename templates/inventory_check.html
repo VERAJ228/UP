@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Inventory Check - Inventory Management{% endblock %}
+
+{% block content %}
+<h2>Inventory Check</h2>
+
+<form action="{{ url_for('inventory_check') }}" method="POST">
+    <label for="store_id">Select Store:</label>
+    <select name="store_id" required>
+        {% for store in stores %}
+        <option value="{{ store.store_id }}">{{ store.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="product_id">Select Product:</label>
+    <select name="product_id" required>
+        {% for product in products %}
+        <option value="{{ product.product_id }}">{{ product.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="accounted_quantity">Accounted Quantity:</label>
+    <input type="number" name="accounted_quantity" required><br>
+
+    <label for="actual_quantity">Actual Quantity:</label>
+    <input type="number" name="actual_quantity" required><br>
+
+    <input type="submit" value="Submit Inventory Check">
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+{% endblock %}

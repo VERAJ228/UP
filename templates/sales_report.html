@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sales Report - Inventory Management{% endblock %}
+
+{% block content %}
+<h2>Sales Report</h2>
+
+<form action="{{ url_for('sales_report') }}" method="POST">
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" required><br>
+
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" required><br>
+
+    <input type="submit" value="Generate Report">
+</form>
+
+{% if sales %}
+<table>
+    <thead>
+        <tr>
+            <th>Sale ID</th>
+            <th>Sale Date</th>
+            <th>Total</th>
+            <th>Employee</th>
+            <th>Store</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in sales %}
+        <tr>
+            <td>{{ sale.sale_id }}</td>
+            <td>{{ sale.sale_date }}</td>
+            <td>{{ sale.total }}</td>
+            <td>{{ sale.employee.full_name }}</td>
+            <td>{{ sale.store.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No sales found for the specified period.</p>
+{% endif %}
+{% endblock %}

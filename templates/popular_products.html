@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popular Products</title>
+</head>
+<body>
+    <h1>Popular Products</h1>
+    <form method="POST" action="{{ url_for('popular_products') }}">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" required><br>
+
+        <button type="submit">Generate Report</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Total Quantity Sold</th>
+                <th>Total Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in popular_products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.total_quantity }}</td>
+                <td>{{ product.total_sales }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Discount</title>
+</head>
+<body>
+    <h1>Add Discount</h1>
+    <form action="{{ url_for('add_discount') }}" method="POST">
+        <label for="min_purchase">Minimum Purchase Amount:</label>
+        <input type="number" name="min_purchase" required><br>
+
+        <label for="discount_percentage">Discount Percentage:</label>
+        <input type="number" name="discount_percentage" step="0.01" required><br>
+
+        <input type="submit" value="Add Discount">
+    </form>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
